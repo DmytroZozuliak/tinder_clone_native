@@ -10,3 +10,12 @@ type ModalParamList = {
 }
 
 export type CombinedParamList = RootStackParamList & ModalParamList
+
+export interface UserCard {
+  displayName: string
+  age: string
+  id: string
+  job: string
+  photoURL: string
+  timestamp: Date
+}

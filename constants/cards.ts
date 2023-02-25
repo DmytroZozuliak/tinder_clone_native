@@ -1,13 +1,6 @@
-export interface Card {
-  displayName: string
-  age: string
-  id: string
-  job: string
-  photoURL: string
-  timestamp: Date
-}
+import { UserCard } from '../interfaces/baseInterfaces'
 
-export const maleCardsData: Card[] = [
+export const maleCardsData: UserCard[] = [
   {
     id: '1',
     displayName: 'Dmytro',
@@ -28,7 +21,7 @@ export const maleCardsData: Card[] = [
   },
 ]
 
-const femaleCardsData: Card[] = [
+const femaleCardsData: UserCard[] = [
   {
     id: '3',
     displayName: 'Ann',

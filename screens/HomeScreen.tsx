@@ -4,16 +4,17 @@ import { useTypedNavigation } from '../hooks/navigation'
 import { AntDesign, Entypo, Ionicons } from "@expo/vector-icons";
 import Swiper from "react-native-deck-swiper";
 import useAuth from '../layouts/AuthProvider'
-import { Card, maleCardsData } from '../constants/cards';
 import HomeHeader from '../components/HomeHeader';
 import { collection, doc, onSnapshot } from 'firebase/firestore';
 import { db } from '../firebase';
+import { UserCard } from '../interfaces/baseInterfaces';
+import { maleCardsData } from '../constants/cards';
 
 const HomeScreen = () => {
   const navigation = useTypedNavigation()
   const { user, logOut } = useAuth()
-  const swipeRef = useRef<Swiper<Card> | null>(null)
-  const [profiles, setProfiles] = useState<Card[]>([])
+  const swipeRef = useRef<Swiper<UserCard> | null>(null)
+  const [profiles, setProfiles] = useState<UserCard[]>([])
 
   if (!user) {
     return (
@@ -24,15 +25,14 @@ const HomeScreen = () => {
     )
   }
   useLayoutEffect(() => {
+    // navigates to modal when first entered and no profile in db
     const unsubscribe = onSnapshot(doc(db, 'users', user.uid), snapshot => {
       if (!snapshot.exists()) {
         navigation.navigate('ModalScreen')
       }
     })
 
-    return () => {
-      unsubscribe()
-    };
+    return unsubscribe
   }, [])
 
   useEffect(() => {
@@ -40,18 +40,21 @@ const HomeScreen = () => {
 
     const fetchCards = async () => [
       unsubscribe = onSnapshot(collection(db, 'users'), snapshot => {
-        const filteredUsers = snapshot.docs.map(doc => ({
-          id: doc.id,
-          ...doc.data()
-        }))
-        // console.log(filteredUsers)
-        setProfiles(filteredUsers as Card[])
+        const filteredUsers = snapshot.docs
+          .filter(doc => doc.id !== user.uid)
+          .map(doc => ({
+            id: doc.id,
+            ...doc.data()
+          }))
+        setProfiles(filteredUsers as UserCard[])
       })
     ]
     fetchCards()
 
     return unsubscribe
   }, [])
+
+  // console.log('profiles.length', profiles.length)
 
   return (
     <SafeAreaView
@@ -66,8 +69,9 @@ const HomeScreen = () => {
           cards={profiles}
           stackSize={5}
           cardIndex={0}
-          verticalSwipe={false}
           animateCardOpacity
+          verticalSwipe={false}
+          infinite={true}
           overlayLabels={{
             left: {
               title: "NOPE",
@@ -87,13 +91,13 @@ const HomeScreen = () => {
               }
             },
           }}
-          onSwipedLeft={() => {
-
+          onSwipedLeft={(ind) => {
+            // console.log("index", ind)
           }}
           onSwipedRight={() => {
 
           }}
-          renderCard={card => card ? (
+          renderCard={(card, ind) => (card) ? (
             <View key={card.id} className='bg-white h-3/4 rounded-xl relative'>
               <Image
                 className='h-full w-full rounded-xl'
@@ -119,7 +123,8 @@ const HomeScreen = () => {
                 source={{ uri: "https://links.papareact.com/6gb" }}
               />
             </View>
-          )}
+          )
+          }
         />
       </View>
 
