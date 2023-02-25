@@ -4,9 +4,9 @@ type RootStackParamList = {
   LoginScreen: {} | undefined
 }
 
-type MapStackParamList = {
-  NavigateCard: {} | undefined
-  RideOptionsCard: {} | undefined
+type ModalParamList = {
+  ModalScreen: {} | undefined
+  // RideOptionsCard: {} | undefined
 }
 
-export type CombinedParamList = RootStackParamList & MapStackParamList
+export type CombinedParamList = RootStackParamList & ModalParamList

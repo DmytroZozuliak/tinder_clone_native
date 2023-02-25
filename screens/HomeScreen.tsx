@@ -5,6 +5,7 @@ import { AntDesign, Entypo, Ionicons } from "@expo/vector-icons";
 import Swiper from "react-native-deck-swiper";
 import useAuth from '../layouts/AuthProvider'
 import { Card, maleCardsData } from '../constants/cards';
+import HomeHeader from '../components/HomeHeader';
 
 const HomeScreen = () => {
   const navigation = useTypedNavigation()
@@ -24,24 +25,7 @@ const HomeScreen = () => {
   return (
     <SafeAreaView
       className='flex-1'>
-      {/* Header */}
-      <View className='flex-row items-center justify-between mx-5 '>
-        <TouchableOpacity onPress={logOut}>
-          <Image source={{ uri: user.photoURL || "" }}
-            className="h-10 w-10 rounded-full" />
-        </TouchableOpacity>
-        <TouchableOpacity>
-          <Image source={require('../assets/images/pngwing.com.png')}
-            className="h-14 w-14 rounded-full" />
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          onPress={() => navigation.navigate("ChatScreen")}
-        >
-          <Ionicons size={30} color="#FF5864" name='chatbubbles-sharp' />
-        </TouchableOpacity>
-      </View>
-      {/* End of header */}
+      <HomeHeader />
 
       {/* Cards */}
       <View className='flex-1'>
