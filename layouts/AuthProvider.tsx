@@ -5,18 +5,13 @@ import { AuthRequestPromptOptions, AuthSessionResult } from 'expo-auth-session';
 import * as WebBrowser from 'expo-web-browser';
 import { onAuthStateChanged, GoogleAuthProvider, signInWithCredential, signOut, User } from 'firebase/auth';
 import { auth } from '../firebase';
+import { authOptions } from '../constants/auth';
 
-// https://auth.expo.io
-// https://auth.expo.io/@dmytro_expo/tinder
-const clientId = '54383542494-62qiibn9cnu81i5dlc6f6a73ktg54v2d.apps.googleusercontent.com'
-const iosClientId = "54383542494-vegv8fi5kdi6tl3ij5sla43pp14sam7q.apps.googleusercontent.com"
-const androidClientId = '54383542494-ql3qob63q9ash2g90o3vt7abcdfh8d7l.apps.googleusercontent.com'
-
-
-interface AuthProviderProps {
-  children: ReactNode
+WebBrowser.maybeCompleteAuthSession();
+const config: Partial<Google.GoogleAuthRequestConfig> = {
+  ...authOptions,
+  scopes: ["profile", "email"]
 }
-
 interface AuthContextInterface {
   user: User | null;
   promptAsync: ((options?: AuthRequestPromptOptions | undefined) => Promise<AuthSessionResult>);
@@ -24,17 +19,10 @@ interface AuthContextInterface {
   isLoading: boolean;
   logOut: () => void;
 }
-
-WebBrowser.maybeCompleteAuthSession();
-
-
 const AuthContext = createContext<Partial<AuthContextInterface>>({})
 
-const config: Partial<Google.GoogleAuthRequestConfig> = {
-  clientId,
-  iosClientId,
-  androidClientId,
-  scopes: ["profile", "email"]
+interface AuthProviderProps {
+  children: ReactNode
 }
 
 export const AuthProvider = ({ children }: AuthProviderProps) => {
@@ -44,7 +32,6 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [isLoading, setIsLoading] = useState(false)
 
   const [request, response, promptAsync] = Google.useIdTokenAuthRequest(config);
-
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -61,11 +48,11 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   }, [])
 
   useEffect(() => {
-
     const fetch = async () => {
       setIsLoading(true)
       try {
         if (response?.type === 'success') {
+          console.log("response", response)
           const { id_token } = response.params;
           const credential = GoogleAuthProvider.credential(id_token);
           await signInWithCredential(auth, credential);
@@ -96,7 +83,6 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     isLoading,
     logOut
   }), [user, error, isLoading])
-
 
   return (
     <AuthContext.Provider value={memoedValue}>
