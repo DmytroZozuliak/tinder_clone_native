@@ -52,7 +52,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       setIsLoading(true)
       try {
         if (response?.type === 'success') {
-          console.log("response", response)
+          // console.log("response", response)
           const { id_token } = response.params;
           const credential = GoogleAuthProvider.credential(id_token);
           await signInWithCredential(auth, credential);

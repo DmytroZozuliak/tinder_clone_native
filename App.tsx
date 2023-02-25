@@ -4,7 +4,6 @@ import { AuthProvider } from './layouts/AuthProvider';
 import Navigation from './navigation';
 
 export default function App() {
-
   return (
     <SafeAreaProvider>
       <AuthProvider>

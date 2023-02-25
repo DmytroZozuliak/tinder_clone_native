@@ -3,7 +3,7 @@ import React from 'react'
 import useAuth from '../layouts/AuthProvider'
 
 const LoginScreen = () => {
-  const { promptAsync, user } = useAuth()
+  const { promptAsync } = useAuth()
 
   return (
     <View className='flex-1'>
