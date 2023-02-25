@@ -69,7 +69,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
     fetch()
 
-  }, [response]);
+  }, [response, promptAsync]);
 
   const logOut = () => {
     setIsLoading(true)

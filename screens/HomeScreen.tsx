@@ -1,16 +1,19 @@
 import { View, Text, SafeAreaView, Button, Image, TouchableOpacity, StyleSheet } from 'react-native'
-import React, { useRef } from 'react'
+import React, { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { useTypedNavigation } from '../hooks/navigation'
 import { AntDesign, Entypo, Ionicons } from "@expo/vector-icons";
 import Swiper from "react-native-deck-swiper";
 import useAuth from '../layouts/AuthProvider'
 import { Card, maleCardsData } from '../constants/cards';
 import HomeHeader from '../components/HomeHeader';
+import { collection, doc, onSnapshot } from 'firebase/firestore';
+import { db } from '../firebase';
 
 const HomeScreen = () => {
   const navigation = useTypedNavigation()
   const { user, logOut } = useAuth()
   const swipeRef = useRef<Swiper<Card> | null>(null)
+  const [profiles, setProfiles] = useState<Card[]>([])
 
   if (!user) {
     return (
@@ -20,7 +23,35 @@ const HomeScreen = () => {
       </SafeAreaView>
     )
   }
-  // console.log(user)
+  useLayoutEffect(() => {
+    const unsubscribe = onSnapshot(doc(db, 'users', user.uid), snapshot => {
+      if (!snapshot.exists()) {
+        navigation.navigate('ModalScreen')
+      }
+    })
+
+    return () => {
+      unsubscribe()
+    };
+  }, [])
+
+  useEffect(() => {
+    let unsubscribe
+
+    const fetchCards = async () => [
+      unsubscribe = onSnapshot(collection(db, 'users'), snapshot => {
+        const filteredUsers = snapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data()
+        }))
+        // console.log(filteredUsers)
+        setProfiles(filteredUsers as Card[])
+      })
+    ]
+    fetchCards()
+
+    return unsubscribe
+  }, [])
 
   return (
     <SafeAreaView
@@ -32,7 +63,7 @@ const HomeScreen = () => {
         <Swiper
           ref={swipeRef}
           containerStyle={{ backgroundColor: "transparent" }}
-          cards={maleCardsData}
+          cards={profiles}
           stackSize={5}
           cardIndex={0}
           verticalSwipe={false}
@@ -62,18 +93,31 @@ const HomeScreen = () => {
           onSwipedRight={() => {
 
           }}
-          renderCard={card => (
+          renderCard={card => card ? (
             <View key={card.id} className='bg-white h-3/4 rounded-xl relative'>
               <Image
                 className='h-full w-full rounded-xl'
                 source={{ uri: card.photoURL }} />
               <View className='flex-row justify-between items-center bg-white  w-full h-20 absolute bottom-0 px-6 py-2 rounded-b-xl' style={styles.cardShadow}>
                 <View>
-                  <Text className='text-xl font-bold'>{card.firstName} {card.lastName}</Text>
+                  <Text className='text-xl font-bold'>{card.displayName}</Text>
                   <Text>{card.job}</Text>
                 </View>
                 <Text className='text-2xl font-bold'>{card.age}</Text>
               </View>
+            </View>
+          ) : (
+            <View className='relative bg-white h-3/4 rounded-xl justify-center items-center'
+              style={styles.cardShadow}>
+              <Text className='font-bold pb-5'>
+                No more profiles available
+              </Text>
+              <Image
+                className='h-20 w-full'
+                resizeMode='contain'
+                // height={100}
+                source={{ uri: "https://links.papareact.com/6gb" }}
+              />
             </View>
           )}
         />
