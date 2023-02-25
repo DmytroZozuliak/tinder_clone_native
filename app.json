@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "tinder_clone",
+    "name": "tinder",
     "slug": "tinder_clone",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -19,9 +19,11 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.exp.tinder"
     },
     "android": {
+      "package": "com.exp.tinder",
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
@@ -29,6 +31,11 @@
     },
     "web": {
       "favicon": "./assets/images/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "696f39d0-97af-41a8-8e8a-1cb6e550f158"
+      }
     }
   }
 }

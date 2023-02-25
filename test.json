@@ -1,0 +1,24 @@
+{
+  "_redirectEventId": undefined,
+  "apiKey": "AIzaSyDEGcBo6dm6oApZ2U4HsYpUNzXrtPUsyYE",
+  "appName": "[DEFAULT]",
+  "createdAt": "1677255015390",
+  "displayName": "Dmytro Z.",
+  "email": "dmytro.zozuliak@gmail.com",
+  "emailVerified": true,
+  "isAnonymous": false,
+  "lastLoginAt": "1677255015391",
+  "phoneNumber": undefined,
+  "photoURL": "https://lh3.googleusercontent.com/a/AGNmyxZQQuJyiHWUiKh5r26vthquk0uCNKgO5m06MymwIQ=s96-c",
+  "providerData": [
+    [Object
+    ]
+  ],
+  "stsTokenManager": {
+    "accessToken": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjE1YzJiNDBhYTJmMzIyNzk4NjY2YTZiMzMyYWFhMDNhNjc3MzAxOWIiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiRG15dHJvIFouIiwicGljdHVyZSI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS9hL0FHTm15eFpRUXVKeWlIV1VpS2g1cjI2dnRocXVrMHVDTktnTzVtMDZNeW13SVE9czk2LWMiLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vdGluZGVyLTEtYmI4NDkiLCJhdWQiOiJ0aW5kZXItMS1iYjg0OSIsImF1dGhfdGltZSI6MTY3NzI1NTExMCwidXNlcl9pZCI6ImZid2hFOTNMckJmQVlhRnJsY1NQa1lKTUdXMDMiLCJzdWIiOiJmYndoRTkzTHJCZkFZYUZybGNTUGtZSk1HVzAzIiwiaWF0IjoxNjc3MjU1MTEwLCJleHAiOjE2NzcyNTg3MTAsImVtYWlsIjoiZG15dHJvLnpvenVsaWFrQGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJmaXJlYmFzZSI6eyJpZGVudGl0aWVzIjp7Imdvb2dsZS5jb20iOlsiMTExNTcyODE0MzkyOTE2MjYxMDY2Il0sImVtYWlsIjpbImRteXRyby56b3p1bGlha0BnbWFpbC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.XiWaS0N41ZUC9_0ovXpgp8QjN0vBljcnYjo6f27E8XtxkWAApynfP1FqXAwtRAbzq8AJaEciLD9ZNz4nnDlM2JvbmCZFCRaSopWbKQoQdBN-aYsCE1o7ZAV47hHnjatG1cuIfO1kyo933RqV9Xr6cvOKUdtHrnmk0DIG_En3JNHjE91pSugcTtg_Wi5fzaMFVc3d8G7I2LAw5gJEjWnjQIUqcLZQinWnIYTfawZcWnr8n8fyISpdLnL138v4nkxYxGsetF6BF0Uuu-bqKIbWx3uuA2WFodKpSinm1CPrIv4wmrvxPBGs-GOh1nRrt_W6DrV0EAvE3dIWgzmYKGAz2A",
+    "expirationTime": 1677258710955,
+    "refreshToken": "APJWN8fpl4CUu6nT_Ezdy348xsq_Nen4kDO86WTh_d5OBPlt_rbPnX-TNam_HE2uA6T0Kyfo2smI39wstbaAxscVleB0ZzmWyyoJKG7MCs0AV3y9XKrYxjHTe_e5IzH-ncvCzV7PhClAWyGIdsNoRRkKasAA_GXDi8sZTFDmqulc_WJ_rR8ujh6CEu9ivnJ5wzlIGYLS31LAT1GQbJ4MLHx2g9_cBoHrvobsCAmaqbkYa6sS55Fo8Dgd7JuOVayBZCypiylmgFTvSK-sb1Z41Ub95E0eFhSutpx1R78kX4LkbYM5hA0llJR3LeRBF8UbHxD7cDs7Soc1het-bG8fbPyetTx_YBqiFcbEXvgArEouNiJ3iaqfxxkCsUQ558nfbj7v4z4v2VxPD3d2A5qz65w0uGQUQL1TGdUNs8cEui0uhD6TZniTriU"
+  },
+  "tenantId": undefined,
+  "uid": "fbwhE93LrBfAYaFrlcSPkYJMGW03"
+}

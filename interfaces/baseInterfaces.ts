@@ -1,7 +1,7 @@
 type RootStackParamList = {
   HomeScreen: {} | undefined
   ChatScreen: {} | undefined
-  EatsScreen: {} | undefined
+  LoginScreen: {} | undefined
 }
 
 type MapStackParamList = {
