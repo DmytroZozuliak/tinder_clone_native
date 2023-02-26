@@ -86,10 +86,10 @@ const HomeScreen = () => {
             //   age: '43',
             //   timestamp: new Date(),
             // }]}
-            cards={maleCardsData}
-            // cards={profiles}
-            // stackSize={5}
-            // cardIndex={0}
+            // cards={maleCardsData}
+            cards={profiles}
+            stackSize={5}
+            cardIndex={0}
             animateCardOpacity
             verticalSwipe={false}
             // infinite={true}
@@ -122,7 +122,7 @@ const HomeScreen = () => {
             }}
             renderCard={(card, ind) => {
 
-              return (
+              return card && (
                 <View key={card.id} className='bg-white h-3/4 rounded-xl relative'>
                   <Image
                     className='h-full w-full rounded-xl'
@@ -148,7 +148,6 @@ const HomeScreen = () => {
             <Image
               className='h-20 w-full'
               resizeMode='contain'
-              // height={100}
               source={{ uri: "https://links.papareact.com/6gb" }}
             />
           </View>

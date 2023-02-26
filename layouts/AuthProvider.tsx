@@ -14,10 +14,11 @@ const config: Partial<Google.GoogleAuthRequestConfig> = {
 }
 interface AuthContextInterface {
   user: User | null;
-  promptAsync: ((options?: AuthRequestPromptOptions | undefined) => Promise<AuthSessionResult>);
+  // promptAsync: ((options?: AuthRequestPromptOptions | undefined) => Promise<AuthSessionResult>);
   error: null | string;
   isLoading: boolean;
   logOut: () => void;
+  logIn: () => void;
 }
 const AuthContext = createContext<Partial<AuthContextInterface>>({})
 
@@ -51,8 +52,8 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     const fetch = async () => {
       setIsLoading(true)
       try {
+        console.log("response", response)
         if (response?.type === 'success') {
-          // console.log("response", response)
           const { id_token } = response.params;
           const credential = GoogleAuthProvider.credential(id_token);
           await signInWithCredential(auth, credential);
@@ -76,9 +77,13 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     signOut(auth).catch(err => setError(err))
   }
 
+  const logIn = () => {
+    promptAsync()
+  }
+
   const memoedValue = useMemo(() => ({
     user,
-    promptAsync,
+    logIn,
     error,
     isLoading,
     logOut

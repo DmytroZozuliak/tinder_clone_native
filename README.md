@@ -1,2 +1,3 @@
-# tinder_clone
-### Developed in react-native
+# tinder clone
+
+### Developed in react-native using expo

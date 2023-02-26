@@ -3,7 +3,7 @@ import React from 'react'
 import useAuth from '../layouts/AuthProvider'
 
 const LoginScreen = () => {
-  const { promptAsync } = useAuth()
+  const { logIn } = useAuth()
 
   return (
     <View className='flex-1'>
@@ -14,9 +14,7 @@ const LoginScreen = () => {
         <TouchableOpacity
           className='absolute bottom-40 w-52 bg-white p-4 rounded-2xl'
           style={{ marginHorizontal: "25%" }}
-          onPress={() => {
-            promptAsync && promptAsync()
-          }}
+          onPress={logIn}
         >
           <Text className='text-center font-semibold'>Sign in & get swiping</Text>
         </TouchableOpacity>
