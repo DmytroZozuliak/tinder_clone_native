@@ -6,7 +6,7 @@ interface HomeCardProps {
   card: UserCard
 }
 
-const HomeCard = ({ card }: HomeCardProps) => {
+export const HomeCard = ({ card }: HomeCardProps) => {
   return (
     <View key={card.id} className='bg-white h-3/4 rounded-xl relative'>
       <Image
@@ -23,7 +23,21 @@ const HomeCard = ({ card }: HomeCardProps) => {
   )
 }
 
-export default HomeCard
+export const HomeCardEmpty = () => {
+  return (
+    <View className='relative bg-white h-3/4 rounded-xl justify-center items-center mx-6  mt-10'
+      style={styles.cardShadow}>
+      <Text className='font-bold pb-5 text-xl'>
+        No more profiles available
+      </Text>
+      <Image
+        className='h-20 w-full'
+        resizeMode='contain'
+        source={{ uri: "https://links.papareact.com/6gb" }}
+      />
+    </View>
+  )
+}
 
 const styles = StyleSheet.create({
   cardShadow: {
